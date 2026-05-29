@@ -32,3 +32,9 @@
 - Sem admin/homologacao.
 - Sem sync entre aparelhos.
 - WhatsApp permanece como canal humano.
+- Sem Supabase neste ciclo.
+- Sem Firebase neste ciclo.
+
+## Nota de evolucao futura (nao implementada)
+- Firebase/Firestore pode ser avaliado em microbloco futuro como alternativa de backend, motivado por restricoes de cota/custo no Supabase.
+- Nenhuma integracao de backend foi iniciada neste marco.

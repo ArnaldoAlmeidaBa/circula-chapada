@@ -13,6 +13,8 @@
 - Nao ha autenticacao/login.
 - Nao ha validacao comunitaria.
 - WhatsApp segue como canal humano de combinacao.
+- Nao usar Supabase neste ciclo.
+- Nao iniciar Firebase neste ciclo.
 
 ## Contrato local adotado
 - `listTrips()`
@@ -42,3 +44,9 @@ Resultado esperado: lista volta ao seed mock inicial.
 ## Estado deste marco
 - Fluxo local real minimo implementado sem expansao de escopo.
 - Sem introducao de backend, login, admin, edicao/exclusao de viagens, Supabase/Firebase, integracoes externas ou Traccar.
+- Local Real 0.1 encerrado com sucesso antes de qualquer discussao sobre backend.
+
+## Decisao arquitetural deste encerramento
+- A persistencia em `localStorage` permanece como base operacional deste ciclo.
+- O contrato simples do store local foi mantido para facilitar futura substituicao por Firestore, sem implementacao nesta etapa.
+- Firebase fica apenas registrado como alternativa futura, motivada por limitacoes de cota/custo observadas no Supabase em cenarios de evolucao.
