@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { CIDADES } from "@/data/trips";
 import { CheckCircle2, ArrowLeft } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { createTripFromOffer } from "@/lib/local-trip-store";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(60),
@@ -22,6 +23,12 @@ const Offer = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  useEffect(() => {
+    if (!submitted) return;
+    const timer = window.setTimeout(() => navigate("/viagens"), 1200);
+    return () => window.clearTimeout(timer);
+  }, [submitted, navigate]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget));
@@ -34,6 +41,7 @@ const Offer = () => {
       return;
     }
     setErrors({});
+    createTripFromOffer(result.data);
     setSubmitted(true);
     toast({ title: "Viagem publicada!", description: "Sua viagem aparece no painel da comunidade." });
   };

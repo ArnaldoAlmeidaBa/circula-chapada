@@ -1,12 +1,12 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { TRIPS } from "@/data/trips";
 import { ArrowLeft, Clock, MapPin, Users, Car, Phone, CheckCircle2, AlertCircle } from "lucide-react";
 import { formatBRL, getTripStatus, statusLabel, whatsappLink } from "@/lib/trip-utils";
+import { getTripById } from "@/lib/local-trip-store";
 
 const TripDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const trip = TRIPS.find((t) => t.id === id);
+  const trip = id ? getTripById(id) : undefined;
 
   if (!trip) {
     return (

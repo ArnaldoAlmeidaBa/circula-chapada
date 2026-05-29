@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Search, PlusCircle, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import heroImg from "@/assets/hero-chapada.jpg";
-import { DESTINOS_RAPIDOS, TRIPS } from "@/data/trips";
+import { DESTINOS_RAPIDOS } from "@/data/trips";
 import { getTripStatus } from "@/lib/trip-utils";
+import { listTrips } from "@/lib/local-trip-store";
 
 const Home = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const trips = useMemo(() => listTrips(), []);
 
-  const viagensHoje = TRIPS.length;
-  const saindoAgora = TRIPS.filter((t) => getTripStatus(t) === "saindo").length;
+  const viagensHoje = trips.length;
+  const saindoAgora = trips.filter((t) => getTripStatus(t) === "saindo").length;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

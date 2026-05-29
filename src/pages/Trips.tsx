@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { TRIPS, CIDADES } from "@/data/trips";
+import { CIDADES } from "@/data/trips";
 import { TripCard } from "@/components/TripCard";
 import { getTripStatus } from "@/lib/trip-utils";
+import { listTrips } from "@/lib/local-trip-store";
 import { Filter, X } from "lucide-react";
 
 const HORARIOS = [
@@ -17,9 +18,10 @@ const Trips = () => {
   const destino = params.get("destino") ?? "";
   const [horario, setHorario] = useState("all");
   const [showFilter, setShowFilter] = useState(false);
+  const trips = useMemo(() => listTrips(), []);
 
   const filtered = useMemo(() => {
-    return TRIPS.filter((t) => {
+    return trips.filter((t) => {
       const matchDest = !destino || t.destination.toLowerCase().includes(destino.toLowerCase());
       const h = parseInt(t.departureTime.split(":")[0], 10);
       const matchHora =
@@ -36,7 +38,7 @@ const Trips = () => {
       if (order[sa] !== order[sb]) return order[sa] - order[sb];
       return a.departureTime.localeCompare(b.departureTime);
     });
-  }, [destino, horario]);
+  }, [destino, horario, trips]);
 
   const setDestino = (v: string) => {
     const p = new URLSearchParams(params);
