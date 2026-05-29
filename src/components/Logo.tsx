@@ -25,7 +25,7 @@ export function Logo({ size = "md", variant = "default" }: Props) {
       </div>
       <div className="leading-tight">
         <div className={`font-display font-extrabold ${sizes.title} ${isLight ? "text-white" : "text-foreground"}`}>
-          Conexão Ibicoara
+          Circula Chapada
         </div>
         <div className={`${sizes.sub} font-semibold uppercase tracking-wider ${isLight ? "text-white/80" : "text-muted-foreground"}`}>
           Transporte Fácil

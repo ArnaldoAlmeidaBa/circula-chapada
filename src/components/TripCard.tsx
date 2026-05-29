@@ -61,7 +61,7 @@ export function TripCard({ trip }: { trip: Trip }) {
           Detalhes
         </Link>
         <a
-          href={whatsappLink(trip.whatsapp, `Olá ${trip.driver}, vi sua viagem ${trip.origin} → ${trip.destination} às ${trip.departureTime} no Conexão Ibicoara. Tem vaga?`)}
+          href={whatsappLink(trip.whatsapp, `Olá ${trip.driver}, vi sua viagem ${trip.origin} → ${trip.destination} às ${trip.departureTime} no Circula Chapada. Tem vaga?`)}
           target="_blank"
           rel="noreferrer"
           aria-disabled={status === "lotado"}
